@@ -303,24 +303,80 @@
   .wa-float{
     position:fixed; bottom:24px; right:24px; z-index:997; width:60px; height:60px; border-radius:50%;
     background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 14px 30px -10px rgba(0,0,0,.4);
-    font-size:1.8rem; animation:floatSlow 3s ease-in-out infinite;
+    animation:floatSlow 3s ease-in-out infinite; transition:bottom .25s ease, transform .2s ease;
+  }
+  .wa-float:hover{transform:scale(1.08);}
+  .wa-float svg{width:32px; height:32px;}
+  .wa-tooltip{
+    position:fixed; bottom:38px; right:96px; z-index:996; background:#fff; color:var(--ink); font-size:.78rem; font-weight:600;
+    padding:9px 14px; border-radius:12px; box-shadow:0 12px 26px -14px rgba(0,0,0,.35); white-space:nowrap;
+    opacity:0; pointer-events:none; transition:opacity .3s ease, bottom .25s ease;
+  }
+  .wa-tooltip.show{opacity:1;}
+  .wa-tooltip::after{
+    content:""; position:absolute; right:-6px; top:50%; transform:translateY(-50%); border:6px solid transparent; border-left-color:#fff;
   }
 
+  /* ---------- responsive ---------- */
+  @media (max-width:1024px){
+    .hero h1{font-size:2.5rem;}
+  }
   @media (max-width:900px){
     .hero-grid, .about-grid, .curr-layout, .guarantee-grid{grid-template-columns:1fr;}
     .stats-grid{grid-template-columns:repeat(2,1fr); row-gap:26px;}
     .bonus-grid{grid-template-columns:repeat(2,1fr);}
     nav.links{display:none;}
+    .hero{padding:56px 0 44px;}
     .hero h1{font-size:2.15rem;}
+    .about-media{order:1;}
+    .about-text{order:2;}
+    .curr-image{order:1; max-width:280px; margin:0 auto;}
+    .curr-accordion{order:2;}
     .curr-image img{position:static;}
+    .guarantee-grid{text-align:center;}
+    .guarantee-text{text-align:left;}
     .sticky-cta{display:flex;}
-    body{padding-bottom:78px;}
+    body{padding-bottom:82px;}
     .float-card{display:none;}
+    .wa-float{bottom:96px;}
+    .wa-tooltip{bottom:110px;}
+  }
+  @media (max-width:640px){
+    .container{padding:0 18px;}
+    .nav-inner{padding:12px 18px;}
+    .logo{font-size:1.05rem;}
+    .logo em{display:block; font-size:.72rem; font-weight:600; opacity:.8;}
+    .btn-header{padding:9px 16px; font-size:.78rem;}
+    .topbar{font-size:.72rem; padding:8px 10px; line-height:1.4;}
+    .eyebrow{font-size:.68rem; padding:6px 12px;}
+    .hero h1{font-size:1.7rem;}
+    .hero p.lead{font-size:1rem;}
+    .trust-pill{font-size:.76rem; padding:8px 13px;}
+    .btn-primary{width:100%; padding:16px 20px;}
+    .hero-cta-wrap{width:100%;}
+    .btn-glow{width:100%;}
+    .section-head h2{font-size:1.5rem;}
+    .about-text h2{font-size:1.4rem;}
+    .accordion-head{font-size:.88rem; padding:15px 16px;}
+    .accordion-head .num{width:24px; height:24px; font-size:.7rem; margin-right:9px;}
+    .accordion-body ul{padding:0 16px 16px 48px;}
+    .price-main{font-size:2.3rem;}
+    .price-card h3{font-size:1.1rem;}
+    .secure-row{flex-direction:column; gap:8px;}
+    .final-cta h2{font-size:1.5rem;}
+    .wa-float{width:52px; height:52px; bottom:90px; right:16px;}
+    .wa-float svg{width:27px; height:27px;}
+    .wa-tooltip{right:12px; bottom:148px; white-space:normal; max-width:200px; font-size:.72rem; text-align:left;}
+    .wa-tooltip::after{display:none;}
+    .sticky-cta{padding:10px 14px;}
+    .sticky-cta .info{font-size:.7rem;}
   }
   @media (max-width:560px){
     .bonus-grid{grid-template-columns:1fr;}
-    .section{padding:64px 0;}
-    .price-card{padding:36px 22px;}
+    .section{padding:56px 0;}
+    .price-card{padding:32px 20px;}
+    .stat h3{font-size:1.9rem;}
+    .stat p{font-size:.72rem;}
   }
 </style>
 </head>
@@ -354,8 +410,8 @@
       <p class="lead">Aprenda a construir posicionamento de mercado, atrair pacientes pelas redes sociais e conduzir atendimentos de sucesso — do jeito leve, seguro e descomplicado que toda mãe merece.</p>
 
       <div class="trust-row">
+        <div class="trust-pill"><span class="ic">💳</span> 12x de R$ 99,50</div>
         <div class="trust-pill"><span class="ic">🎓</span> Certificado de conclusão</div>
-        <div class="trust-pill"><span class="ic">💬</span> Mentoria via WhatsApp</div>
         <div class="trust-pill"><span class="ic">🔒</span> Garantia de 7 dias</div>
         <div class="trust-pill"><span class="ic">⏳</span> 12 meses de acesso</div>
       </div>
@@ -506,7 +562,7 @@
   <div class="container">
     <img src="https://static.wixstatic.com/media/d42134_a83514d6ed304fd3bc5b935016836ab3~mv2.png/v1/fill/w_161,h_88,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/NOVA_LOGO_AMAMOR_2022_TRANSP__PRETO.png" alt="Amamor logo">
     <p>Amamor — Mariana Ragusa | Todos os direitos reservados</p>
-    <p style="margin-top:6px;">Contato: <a href="mailto:info@mysite.com">info@mysite.com</a></p>
+    <p style="margin-top:6px;">Fale conosco pelo WhatsApp: <a id="waFooterLink" href="#" target="_blank" rel="noopener">(43) 99981-4407</a></p>
     <p style="margin-top:14px; opacity:.5;">©2026 Amamor. Página recriada a partir do conteúdo original.</p>
   </div>
 </footer>
@@ -516,10 +572,31 @@
   <a href="https://pay.hotmart.com/C88164610F?checkoutMode=10&bid=1739798458438" class="btn btn-primary">Quero ser Expert</a>
 </div>
 
-<a class="wa-float" href="https://pay.hotmart.com/C88164610F?checkoutMode=10&bid=1739798458438" aria-label="Fale conosco" title="Quero ser Expert">💬</a>
+<span class="wa-tooltip" id="waTooltip">Fale com a Mariana no WhatsApp 💬</span>
+<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp com a Mariana Ragusa" title="Falar no WhatsApp">
+  <svg viewBox="0 0 32 32" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M16.04 3C9.37 3 3.98 8.39 3.98 15.06c0 2.2.58 4.28 1.68 6.12L3 29l8-2.6a12.02 12.02 0 0 0 5.03 1.1h.01c6.67 0 12.06-5.39 12.06-12.06C28.1 8.83 22.71 3 16.04 3Zm0 21.9h-.01a10 10 0 0 1-5.1-1.4l-.36-.21-4.75 1.54 1.56-4.63-.24-.38a9.9 9.9 0 0 1-1.53-5.3C5.61 9.5 10.36 4.9 16.04 4.9c2.66 0 5.16 1.04 7.04 2.92a9.86 9.86 0 0 1 2.92 7.02c0 5.6-4.76 10.06-9.96 10.06Zm5.46-7.53c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.91-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.45 1.06 2.86 1.21 3.06.15.2 2.09 3.2 5.08 4.48.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z"/></svg>
+</a>
 
 <script>
 (function(){
+  // WhatsApp link — número real da Mariana + mensagem identificando a origem
+  const waNumber = "5543999814407";
+  const waMessage = "Olá! Vim pelo site da Amamor e quero saber mais sobre o curso Expert em Amamentação 💕";
+  const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
+  const waFloat = document.getElementById('waFloat');
+  const waFooterLink = document.getElementById('waFooterLink');
+  if(waFloat) waFloat.href = waUrl;
+  if(waFooterLink) waFooterLink.href = waUrl;
+
+  // show a friendly tooltip near the WhatsApp button a couple times, then let hover handle it
+  const waTooltip = document.getElementById('waTooltip');
+  if(waTooltip && waFloat){
+    setTimeout(()=>waTooltip.classList.add('show'), 2500);
+    setTimeout(()=>waTooltip.classList.remove('show'), 7500);
+    waFloat.addEventListener('mouseenter', ()=>waTooltip.classList.add('show'));
+    waFloat.addEventListener('mouseleave', ()=>waTooltip.classList.remove('show'));
+  }
+
   // scroll progress + header shrink
   const header = document.getElementById('siteHeader');
   const progress = document.getElementById('progress');
@@ -640,7 +717,7 @@
     {q:"Existe algum pré-requisito para participar do curso?", a:"Não existe. É indicado tanto para atualização profissional quanto para quem quer iniciar na área."},
     {q:"Como posso me inscrever no curso?", a:"Basta efetuar a compra e você recebe acesso ao curso 100% online imediatamente."},
     {q:"O curso oferece certificado de conclusão?", a:"Sim, o curso oferece certificado de conclusão."},
-    {q:"Como posso entrar em contato com a Amamor para mais informações?", a:"Através das redes sociais ou pelo WhatsApp disponível no perfil do Instagram. Após a compra, você tem acesso direto pelo WhatsApp com a mentora Mariana Ragusa para tirar qualquer dúvida."}
+    {q:"Como posso entrar em contato com a Amamor para mais informações?", a:"Pelo WhatsApp (43) 99981-4407 ou pelas redes sociais. Após a compra, você também tem acesso direto pelo WhatsApp com a mentora Mariana Ragusa para tirar qualquer dúvida."}
   ];
   const faqWrap = document.getElementById('faqList');
   faqs.forEach(f=>{
