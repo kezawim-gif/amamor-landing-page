@@ -475,10 +475,18 @@
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Prova social</span>
-      <h2>Depoimentos de mães atendidas por mim</h2>
-      <p>Resultados reais de quem já sentiu a diferença de um atendimento seguro e acolhedor.</p>
+      <h2>Quem já fez o curso recomenda</h2>
+      <p>Depoimentos reais de profissionais que se tornaram Experts em Amamentação com a Mariana.</p>
     </div>
     <div class="video-grid reveal" id="videoGrid"></div>
+  </div>
+
+  <div class="container">
+    <div class="section-head reveal" style="margin-top:20px;">
+      <span class="eyebrow">Autoridade no assunto</span>
+      <h2>Depoimentos de mães atendidas por mim</h2>
+      <p>Resultados reais de mamães que já sentiram a diferença de um atendimento seguro e acolhedor — a mesma expertise que você vai aprender no curso.</p>
+    </div>
   </div>
   <div class="marquee-wrap reveal">
     <div class="marquee-track" id="track1"></div>
@@ -668,8 +676,8 @@
 
   // video testimonials (YouTube, click-to-load para não pesar o carregamento inicial)
   const videoTestimonials = [
-    {id:"XUt2zRWxVfo", label:"Depoimento em vídeo — aluna Expert em Amamentação"},
-    {id:"1v-JPlhDGoQ", label:"Depoimento em vídeo — aluna Expert em Amamentação"}
+    {id:"XUt2zRWxVfo", label:"Depoimento em vídeo — aluna do curso Expert em Amamentação"},
+    {id:"1v-JPlhDGoQ", label:"Depoimento em vídeo — aluna do curso Expert em Amamentação"}
   ];
   const videoGrid = document.getElementById('videoGrid');
   if(videoGrid){
@@ -679,7 +687,7 @@
       card.innerHTML = `
         <img src="https://img.youtube.com/vi/${vt.id}/hqdefault.jpg" alt="${vt.label}" loading="lazy">
         <span class="play-btn"></span>
-        <span class="vlabel">▶ Depoimento em vídeo</span>
+        <span class="vlabel">▶ Aluna do curso</span>
       `;
       card.addEventListener('click', function onPlay(){
         card.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${vt.id}?autoplay=1&rel=0" title="${vt.label}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
